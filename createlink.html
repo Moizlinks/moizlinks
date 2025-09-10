@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moiz Links - Create Link</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-800 text-white flex flex-col">
+            <div class="h-16 flex items-center justify-center border-b border-gray-700">
+                <img class="h-8 w-auto" src="logo.png" alt="Moiz Links">
+                <span class="ml-3 font-bold text-xl">Moiz Links</span>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="dashboard.html" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 rounded-md">
+                    <i class="fas fa-link mr-3"></i> My Links
+                </a>
+                <a href="analytics.html" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 rounded-md">
+                    <i class="fas fa-chart-bar mr-3"></i> Analytics
+                </a>
+                <a href="settings.html" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 rounded-md">
+                    <i class="fas fa-cog mr-3"></i> Settings
+                </a>
+            </nav>
+            <div class="p-4 border-t border-gray-700">
+                <button id="logout-btn" class="w-full flex items-center justify-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-gray-800 border-b border-gray-700 p-4 flex items-center justify-between">
+                <div id="page-header" class="flex items-center"></div>
+            </header>
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-8 flex items-center justify-center">
+                <div id="main-card" class="w-full max-w-2xl bg-gray-800 p-10 rounded-2xl shadow-2xl border border-gray-700">
+                    <!-- Link Type Selection -->
+                    <div class="mb-8 flex justify-center">
+                        <button id="task-link-tab" class="px-6 py-3 border border-gray-300 text-lg font-semibold rounded-l-full bg-indigo-600 text-white shadow">Task Link</button>
+                        <button id="password-link-tab" class="px-6 py-3 border-t border-b border-r border-gray-300 text-lg font-semibold rounded-r-full bg-white text-gray-700 shadow">Password Link</button>
+                    </div>
+
+                    <!-- Task Link Form -->
+                    <form id="task-link-form">
+                        <div class="space-y-8">
+                            <div>
+                                <label for="task-title" class="block text-lg font-semibold text-gray-300 mb-2">Title</label>
+                                <input type="text" name="task-title" id="task-title" required class="mt-1 block w-full shadow-sm text-lg border-gray-300 rounded-md bg-gray-700 text-white px-4 py-3">
+                            </div>
+                            <div>
+                                <label for="redirect-url" class="block text-lg font-semibold text-gray-300 mb-2">Final Redirect URL</label>
+                                <input type="url" name="redirect-url" id="redirect-url" required class="mt-1 block w-full shadow-sm text-lg border-gray-300 rounded-md bg-gray-700 text-white px-4 py-3">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-200 mb-4">Tasks</h3>
+                                <div id="tasks-container" class="mt-4 space-y-4"></div>
+                                <button type="button" id="add-task-btn" class="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-lg font-semibold rounded-full shadow-sm text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                                    <i class="fas fa-plus mr-2"></i> Add Task
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-lg text-lg font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                                Create Task Link
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Password Link Form (hidden by default) -->
+                    <form id="password-link-form" class="hidden">
+                        <div class="space-y-8">
+                            <div>
+                                <label for="password-title" class="block text-lg font-semibold text-gray-300 mb-2">Title</label>
+                                <input type="text" name="password-title" id="password-title" required class="mt-1 block w-full shadow-sm text-lg border-gray-300 rounded-md bg-gray-700 text-white px-4 py-3">
+                            </div>
+                            <div>
+                                <label for="password-redirect-url" class="block text-lg font-semibold text-gray-300 mb-2">Redirect URL</label>
+                                <input type="url" name="password-redirect-url" id="password-redirect-url" required class="mt-1 block w-full shadow-sm text-lg border-gray-300 rounded-md bg-gray-700 text-white px-4 py-3">
+                            </div>
+                            <div>
+                                <label for="password" class="block text-lg font-semibold text-gray-300 mb-2">Password</label>
+                                <input type="password" name="password" id="password" required class="mt-1 block w-full shadow-sm text-lg border-gray-300 rounded-md bg-gray-700 text-white px-4 py-3">
+                            </div>
+                            <div>
+                                <label for="password-hint" class="block text-lg font-semibold text-gray-300 mb-2">Hint (Optional)</label>
+                                <input type="text" name="password-hint" id="password-hint" class="mt-1 block w-full shadow-sm text-lg border-gray-300 rounded-md bg-gray-700 text-white px-4 py-3">
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-lg text-lg font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                                Create Password Link
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="add-task-modal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Add a new task
+                            </h3>
+                            <div class="mt-2">
+                                <input type="text" id="task-search" placeholder="Search tasks..." class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <div id="built-in-tasks" class="mt-4 grid grid-cols-3 gap-4 max-h-60 overflow-y-auto">
+                                    <!-- Built-in tasks will be populated here -->
+                                </div>
+                                <h4 class="mt-6 font-medium text-gray-900">Or create a custom task</h4>
+                                <div class="mt-4 space-y-4">
+                                    <input type="text" id="custom-task-name" placeholder="Task Name" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <input type="url" id="custom-task-url" placeholder="Target URL" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <input type="url" id="custom-task-icon" placeholder="Icon URL (optional)" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="add-custom-task-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 sm:ml-3 sm:w-auto sm:text-sm">
+                        Add Custom Task
+                    </button>
+                    <button type="button" id="close-modal-btn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/createlink.js"></script>
+</body>
+</html>

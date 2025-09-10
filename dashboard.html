@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moiz Links - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 flex items-center justify-center z-50">
+        <img src="logo.png" alt="Moiz Links Logo" class="h-24 w-auto animate-pulse">
+    </div>
+
+    <div id="dashboard-content" class="hidden flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-800 text-white flex flex-col">
+            <div class="h-16 flex items-center justify-center border-b border-gray-700">
+                <img class="h-8 w-auto" src="logo.png" alt="Moiz Links">
+                <span class="ml-3 font-bold text-xl">Moiz Links</span>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="dashboard.html" class="flex items-center px-4 py-2 text-gray-100 bg-gray-900 rounded-md">
+                    <i class="fas fa-link mr-3"></i> My Links
+                </a>
+                <a href="analytics.html" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 rounded-md">
+                    <i class="fas fa-chart-bar mr-3"></i> Analytics
+                </a>
+                <a href="settings.html" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 rounded-md">
+                    <i class="fas fa-cog mr-3"></i> Settings
+                </a>
+            </nav>
+            <div class="p-4 border-t border-gray-700">
+                <button id="logout-btn" class="w-full flex items-center justify-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-gray-800 border-b border-gray-700 p-4">
+                 <div class="flex items-center justify-between">
+                    <h1 class="text-2xl font-bold">Dashboard</h1>
+                    <div class="flex items-center">
+                         <button type="button" id="create-link-btn" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                            <i class="fas fa-plus mr-2"></i> Create New Link
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-8">
+                <!-- Stats Overview -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h4 class="text-sm font-medium text-gray-400">Total Links</h4>
+                        <p class="text-3xl font-bold">12</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h4 class="text-sm font-medium text-gray-400">Total Clicks</h4>
+                        <p class="text-3xl font-bold">1,287</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h4 class="text-sm font-medium text-gray-400">Completions</h4>
+                        <p class="text-3xl font-bold">982</p>
+                    </div>
+                     <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h4 class="text-sm font-medium text-gray-400">Completion Rate</h4>
+                        <p class="text-3xl font-bold">76.3%</p>
+                    </div>
+                </div>
+                
+                <!-- Links Grid -->
+                <div id="links-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Link cards will be inserted here by JavaScript -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
